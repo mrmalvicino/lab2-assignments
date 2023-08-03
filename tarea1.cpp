@@ -27,36 +27,61 @@ HACER UN PROGRAMA EN EL MARCO DE UN PROYECTO DE CODEBLOCK CON UN MENÚ CON OPCIO
 */
 
 #include <iostream>
-#include <cstdlib>
+using namespace std;
 
-struct MATERIA{
+struct MATERIA{ // El codigo de cada materia esta dado por el indice de un vector de materias
     char nombre_de_materia[30];
     int cant_alumnos;
     int cant_profesores;
 };
 
-void texto_a_vector(char texto[30], char vector[30]){
-    for(int i = 0; i < 30; i ++){
-        vector[i] = texto[i];
+struct INGRESO{
+    int legajo;
+    int fecha_de_acceso[2]; // Array con dia y mes en formato {dd mm}
+    int codigo_de_materia;
+    float cant_horas;
+};
+
+int char_array_length(char arr[]){
+    int i = 0;
+
+    while(arr[i] != '\0'){
+        i++;
+    }
+
+    return i;
+}
+
+void print_char_array(char arr[], int size){
+    for(int i = 0; i < size; i ++){
+        cout << arr[i];
     }
 }
 
-int main(){
-    int const CANT_MATERIAS = 20;
-    MATERIA lote_de_carga[CANT_MATERIAS] = {};
-
-    texto_a_vector("materia 1", lote_de_carga[0].nombre_de_materia);
-    std::cout << lote_de_carga[0].nombre_de_materia << std::endl;
-
+void cargar_lote(MATERIA lote_de_carga[], const int CANT_MATERIAS){
     for(int i = 0; i < CANT_MATERIAS; i ++){
-        //lote_de_carga[i].nombre_de_materia = 'Materia';
-        lote_de_carga[i].cant_alumnos = 30;
-        lote_de_carga[i].cant_profesores = 30;
+        cout << endl << "Ingresar nombre de materia:" << endl;
+        cin.getline(lote_de_carga[i].nombre_de_materia, 30);
     }
+}
+
+void procesar_lote(){
+
+}
+
+int main(){
+    const int CANT_MATERIAS = 2;
+    MATERIA lote_de_carga[CANT_MATERIAS] = {};
+    cargar_lote(lote_de_carga, CANT_MATERIAS);
+
 }
 
 /*
 COMPILAR Y EJECUTAR:
-g++ -o ./bin/hmwk1 hmwk1.cpp
-./bin/hmwk1
+g++ -o ./bin/tarea1 tarea1.cpp
+./bin/tarea1
+
+COMPILAR Y CORRER PRUEBA DE ESCRITORIO:
+g++ -o ./bin/tarea1 tarea1.cpp
+./bin/tarea1 < ./tarea1-test.txt
 */
