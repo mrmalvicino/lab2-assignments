@@ -1,0 +1,80 @@
+1
+Arquitectura y Sistemas Operativos
+10
+1
+2
+Estadística
+20
+2
+3
+Inglés I
+30
+3
+4
+Inglés II
+40
+4
+5
+Laboratorio de Computación I
+50
+5
+6
+Laboratorio de Computación II
+60
+6
+7
+Matemática
+70
+7
+8
+Metodología de la Investigación
+80
+8
+9
+Programación I
+90
+9
+10
+Programación II
+100
+10
+11
+Sistemas de Procesamiento de Datos
+110
+11
+12
+Diseño y Administración de Bases de Dato
+120
+12
+13
+Elementos de Investigación Operativa
+130
+13
+14
+Laboratorio de Computación III
+140
+14
+15
+Laboratorio de Computación IV
+150
+15
+16
+Legislación
+160
+16
+17
+Metodología de Sistemas I
+170
+17
+18
+Organización Contable de la Empresa
+180
+18
+19
+Organización Empresarial
+190
+19
+20
+Programación III
+200
+20

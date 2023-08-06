@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-const int QUANT_CHARS = 30; // Cantidad de caracteres que puede tener el nombre de una materia
+const int QUANT_CHARS = 50; // Cantidad de caracteres que puede tener el nombre de una materia
 const int CANT_MATERIAS = 20; // Usado en lote_de_proceso y lote_de_carga
 const int CANT_MESES = 12; // Usado en lote_de_proceso
 const int CANT_DIAS = 31; // Usado en lote_de_proceso

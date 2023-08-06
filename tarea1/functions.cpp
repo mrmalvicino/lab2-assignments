@@ -33,7 +33,7 @@ void cargar_lote_de_carga(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MA
         cin >> lote_de_carga[num_materia - 1].cant_profesores;
     }
 
-    menu_switch(lote_de_carga, lote_de_proceso);
+    //menu_switch(lote_de_carga, lote_de_proceso);
 }
 
 void mostrar_lote_de_carga(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
@@ -45,7 +45,7 @@ void mostrar_lote_de_carga(MATERIA lote_de_carga[], float lote_de_proceso[CANT_M
         cout << "- Cantidad de profesores a cargo: " << lote_de_carga[i].cant_profesores << endl;
     }
 
-    menu_switch(lote_de_carga, lote_de_proceso);
+    //menu_switch(lote_de_carga, lote_de_proceso);
 }
 
 void cargar_lote_de_proceso(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
@@ -136,8 +136,23 @@ void menu_switch(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][C
     }
 }
 
-void consulta_A(){
+void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
+    int sum_hs = 0;
 
+    for(int i = 0; i < CANT_MATERIAS; i++){
+        for(int j = 0; j < CANT_MESES; j++){
+            for(int k = 0; k < CANT_MESES; k++){
+                sum_hs += lote_de_proceso[i][j][k];
+            }
+        }
+
+        if(sum_hs == 0){
+            print_char_array(lote_de_carga[i].nombre_de_materia, QUANT_CHARS);
+            cout << "\n";
+        }
+
+        sum_hs = 0;
+    }
 }
 
 void consulta_B(){
