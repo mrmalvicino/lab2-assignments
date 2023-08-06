@@ -146,6 +146,8 @@ void mostrar_lote_de_proceso(MATERIA lote_de_carga[], float lote_de_proceso[CANT
 void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
     int sum_hs = 0;
 
+    cout << "\nMaterias que no tuvieron acceso de alumnos nunca:\n\n";
+
     for(int i = 0; i < CANT_MATERIAS; i++){
         for(int j = 0; j < CANT_MESES; j++){
             for(int k = 0; k < CANT_MESES; k++){
@@ -154,6 +156,7 @@ void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CA
         }
 
         if(sum_hs == 0){
+            cout << "Materia " << i + 1 << ": ";
             print_char_array(lote_de_carga[i].nombre_de_materia, QUANT_CHARS);
             cout << "\n";
         }
@@ -163,9 +166,32 @@ void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CA
 }
 
 void consulta_B(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
-    
+    int sum_hs = 0;
+    int max_hs = 0;
+    int max_index;
+
+    cout << "\nMateria que mas cantidad de horas registro accceso de alumnos:\n\n";
+
+    for(int i = 0; i < CANT_MATERIAS; i++){
+        for(int j = 0; j < CANT_MESES; j++){
+            for(int k = 0; k < CANT_MESES; k++){
+                sum_hs += lote_de_proceso[i][j][k];
+            }
+        }
+
+        if(max_hs < sum_hs){
+            max_hs = sum_hs;
+            max_index = i;
+        }
+
+        sum_hs = 0;
+    }
+
+    cout << "\tMateria " << max_index + 1 << ": ";
+    print_char_array(lote_de_carga[max_index].nombre_de_materia, QUANT_CHARS);
+    cout << "\n";
 }
 
 void consulta_C(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
-    
+    cout << "\nCantidad de accesos de alumnos por materia para cada dia de marzo:\n\n";
 }

@@ -38,6 +38,9 @@ int main(){
     cargar_lote_de_proceso(lote_de_carga, lote_de_proceso);
     mostrar_lote_de_carga(lote_de_carga, lote_de_proceso);
     mostrar_lote_de_proceso(lote_de_carga, lote_de_proceso);
+    consulta_A(lote_de_carga, lote_de_proceso);
+    consulta_B(lote_de_carga, lote_de_proceso);
+    consulta_C(lote_de_carga, lote_de_proceso);
 }
 
 /*
