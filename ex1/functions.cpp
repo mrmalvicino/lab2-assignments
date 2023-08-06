@@ -150,7 +150,7 @@ void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CA
 
     for(int i = 0; i < CANT_MATERIAS; i++){
         for(int j = 0; j < CANT_MESES; j++){
-            for(int k = 0; k < CANT_MESES; k++){
+            for(int k = 0; k < CANT_DIAS; k++){
                 sum_hs += lote_de_proceso[i][j][k];
             }
         }
@@ -174,7 +174,7 @@ void consulta_B(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CA
 
     for(int i = 0; i < CANT_MATERIAS; i++){
         for(int j = 0; j < CANT_MESES; j++){
-            for(int k = 0; k < CANT_MESES; k++){
+            for(int k = 0; k < CANT_DIAS; k++){
                 sum_hs += lote_de_proceso[i][j][k];
             }
         }
@@ -194,4 +194,6 @@ void consulta_B(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CA
 
 void consulta_C(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
     cout << "\nCantidad de accesos de alumnos por materia para cada dia de marzo:\n\n";
+
+    
 }
