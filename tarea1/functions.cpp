@@ -2,19 +2,50 @@
 using namespace std;
 #include "functions.h"
 
-int char_array_length(char arr[]){
-    int i = 0;
-
-    while(arr[i] != '\0'){
-        i++;
-    }
-
-    return i;
-}
-
 void print_char_array(char arr[], int size){
     for(int i = 0; i < size; i ++){
         cout << arr[i];
+    }
+}
+
+void menu_switch(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
+    cout << "\n(1) INGRESAR LOTE DE CARGA: Cargar la informacion de las materias.\n";
+    cout << "(2) MOSTRAR LOTE DE CARGA: Mostrar informacion de las materias.\n";
+    cout << "(3) INGRESAR LOTE DE PROCESO: Cargar accesos de alumnos a las aulas virtuales.\n";
+    cout << "(4) MOSTRAR LOTE DE PROCESO: Recorrer matriz de preocesos para ver accesos.\n";
+    cout << "-------------------------\n";
+    cout << "(5) CONSULTA A: Ver materias que no tuvieron acceso de alumnos nunca.\n";
+    cout << "(6) CONSULTA B: Ver materia que mas cantidad de horas registro accceso de alumnos.\n";
+    cout << "(7) CONSULTA C: Ver cantidad de accesos de alumnos por materia para cada dia de marzo.\n";
+    cout << "-------------------------\n";
+    cout << "(0) SALIR\n";
+    
+    int opcion;
+
+    cin >> opcion;
+
+    switch(opcion){
+        case 1:
+            cargar_lote_de_carga(lote_de_carga, lote_de_proceso);
+            break;
+        case 2:
+            mostrar_lote_de_carga(lote_de_carga, lote_de_proceso);
+            break;
+        case 3:
+            cargar_lote_de_proceso(lote_de_carga, lote_de_proceso);
+            break;
+        case 4:
+            mostrar_lote_de_proceso(lote_de_carga, lote_de_proceso);
+            break;
+        case 5:
+            consulta_A(lote_de_carga, lote_de_proceso);
+            break;
+        case 6:
+            consulta_B(lote_de_carga, lote_de_proceso);
+            break;
+        case 7:
+            consulta_C(lote_de_carga, lote_de_proceso);
+            break;
     }
 }
 
@@ -53,6 +84,7 @@ void cargar_lote_de_proceso(MATERIA lote_de_carga[], float lote_de_proceso[CANT_
     int dia_acceso;
     int mes_acceso;
     int num_materia;
+    int cant_hs;
 
     cout << endl << "Ingresar numero de legajo:" << endl;
     cin >> num_legajo;
@@ -68,72 +100,47 @@ void cargar_lote_de_proceso(MATERIA lote_de_carga[], float lote_de_proceso[CANT_
         cin >> num_materia;
 
         cout << endl << "Ingresar cantidad de horas:" << endl;
-        cin >> lote_de_proceso[num_materia - 1][mes_acceso - 1][dia_acceso - 1];
+        cin >> cant_hs;
+
+        lote_de_proceso[num_materia - 1][mes_acceso - 1][dia_acceso - 1] += cant_hs;
 
         cout << endl << "Ingresar numero de legajo:" << endl;
         cin >> num_legajo;
     }
 
-    menu_switch(lote_de_carga, lote_de_proceso);
+    //menu_switch(lote_de_carga, lote_de_proceso);
 }
 
 void mostrar_lote_de_proceso(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
-    for(int i = 0; i < CANT_MATERIAS; i ++){
-        cout << endl << "Materia " << i + 1 << ": ";
-        print_char_array(lote_de_carga[i].nombre_de_materia, QUANT_CHARS);
-        cout << endl;
-
-        for(int j = 0; j < CANT_MESES; j ++){
-            cout << "Mes " << j + 1 << endl;
-
-            for(int k = 0; k < CANT_DIAS; k ++){
-                cout << "Dia " << k + 1 << ": " << lote_de_proceso[i][j][k] << " hs" << endl;
-            }
-        }
-    }
-
-    menu_switch(lote_de_carga, lote_de_proceso);
-}
-
-void menu_switch(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
-    cout << "\n(1) INGRESAR LOTE DE CARGA: Cargar la informacion de las materias.\n";
-    cout << "(2) MOSTRAR LOTE DE CARGA: Mostrar informacion de las materias.\n";
-    cout << "(3) INGRESAR LOTE DE PROCESO: Cargar accesos de alumnos a las aulas virtuales.\n";
-    cout << "(4) MOSTRAR LOTE DE PROCESO: Mostrar toda la matriz de accesos.\n";
-    cout << "-------------------------\n";
-    cout << "(5) CONSULTA A: Ver materias que no tuvieron acceso de alumnos nunca.\n";
-    cout << "(6) CONSULTA B: Ver materia que mas cantidad de horas registro accceso de alumnos.\n";
-    cout << "(7) CONSULTA C: Ver cantidad de accesos de alumnos por materia para cada dia de marzo.\n";
-    cout << "-------------------------\n";
-    cout << "(0) SALIR\n";
+    bool flag_materia_is_print = 0; // Determina si se imprimió el nombre de la materia
+    bool flag_mes_is_print = 0; // Determina si se imprimió el número de mes
     
-    int opcion;
+    for(int i = 0; i < CANT_MATERIAS; i ++){
+        for(int j = 0; j < CANT_MESES; j ++){
+            for(int k = 0; k < CANT_DIAS; k ++){
+                if(lote_de_proceso[i][j][k] != 0){
+                    if(flag_materia_is_print == 0){
+                        cout << endl << "Materia " << i + 1 << ": ";
+                        print_char_array(lote_de_carga[i].nombre_de_materia, QUANT_CHARS);
+                        cout << endl;
+                        flag_materia_is_print = 1;
+                    }
 
-    cin >> opcion;
+                    if(flag_mes_is_print == 0){
+                        cout << "\tMes " << j + 1 << ":\n";
+                        flag_mes_is_print = 1;
+                    }
+                    cout << "\t-Dia " << k + 1 << ": " << lote_de_proceso[i][j][k] << " hs" << endl;
+                }
+            }
 
-    switch(opcion){
-        case 1:
-            cargar_lote_de_carga(lote_de_carga, lote_de_proceso);
-            break;
-        case 2:
-            mostrar_lote_de_carga(lote_de_carga, lote_de_proceso);
-            break;
-        case 3:
-            cargar_lote_de_proceso(lote_de_carga, lote_de_proceso);
-            break;
-        case 4:
-            mostrar_lote_de_proceso(lote_de_carga, lote_de_proceso);
-            break;
-        case 5:
-
-            break;
-        case 6:
-
-            break;
-        case 7:
-
-            break;
+            flag_mes_is_print = 0;
+        }
+    
+    flag_materia_is_print = 0;
     }
+
+    //menu_switch(lote_de_carga, lote_de_proceso);
 }
 
 void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
@@ -155,10 +162,10 @@ void consulta_A(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CA
     }
 }
 
-void consulta_B(){
+void consulta_B(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
     
 }
 
-void consulta_C(){
+void consulta_C(MATERIA lote_de_carga[], float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS]){
     
 }

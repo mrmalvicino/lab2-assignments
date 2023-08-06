@@ -35,7 +35,9 @@ int main(){
     float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS] = {};
     //menu_switch(lote_de_carga, lote_de_proceso);
     cargar_lote_de_carga(lote_de_carga, lote_de_proceso); 
+    cargar_lote_de_proceso(lote_de_carga, lote_de_proceso);
     mostrar_lote_de_carga(lote_de_carga, lote_de_proceso);
+    mostrar_lote_de_proceso(lote_de_carga, lote_de_proceso);
 }
 
 /*
