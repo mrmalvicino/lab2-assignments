@@ -33,14 +33,22 @@ using namespace std;
 int main(){
     MATERIA lote_de_carga[CANT_MATERIAS] = {};
     float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS] = {};
-    //menu_switch(lote_de_carga, lote_de_proceso);
+    int march_logins[CANT_MATERIAS][CANT_DIAS] = {};
+    menu_switch(lote_de_carga, lote_de_proceso, march_logins);
+
+    // PRUEBA DE ESCRITORIO
+    // Comentar todas las líneas que llamen a la función menu_switch() desde main.cpp y desde functions.cpp
+    // Descomentar las siguientes líneas:
+
+    /*
     cargar_lote_de_carga(lote_de_carga, lote_de_proceso); 
-    cargar_lote_de_proceso(lote_de_carga, lote_de_proceso);
+    cargar_lote_de_proceso(lote_de_carga, lote_de_proceso, march_logins);
     mostrar_lote_de_carga(lote_de_carga, lote_de_proceso);
     mostrar_lote_de_proceso(lote_de_carga, lote_de_proceso);
     consulta_A(lote_de_carga, lote_de_proceso);
     consulta_B(lote_de_carga, lote_de_proceso);
-    consulta_C(lote_de_carga, lote_de_proceso);
+    consulta_C(lote_de_carga, march_logins);
+    */
 }
 
 /*
