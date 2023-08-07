@@ -27,7 +27,6 @@ HACER UN PROGRAMA EN EL MARCO DE UN PROYECTO DE CODEBLOCK CON UN MENÚ CON OPCIO
 */
 
 #include <iostream>
-using namespace std;
 #include "functions.h"
 
 int main(){
@@ -35,20 +34,21 @@ int main(){
     float lote_de_proceso[CANT_MATERIAS][CANT_MESES][CANT_DIAS] = {};
     int march_logins[CANT_MATERIAS][CANT_DIAS] = {};
     menu_switch(lote_de_carga, lote_de_proceso, march_logins);
-
-    // PRUEBA DE ESCRITORIO
-    // Comentar todas las líneas que llamen a la función menu_switch() desde main.cpp y desde functions.cpp
-    // Descomentar las siguientes líneas:
+    
+    // PRUEBA DE ESCRITORIO:
+    // Comentar la línea 36 y descomentar el siguiente bloque (líneas 41 y 49).
 
     /*
-    cargar_lote_de_carga(lote_de_carga, lote_de_proceso); 
-    cargar_lote_de_proceso(lote_de_carga, lote_de_proceso, march_logins);
-    mostrar_lote_de_carga(lote_de_carga, lote_de_proceso);
+    cargar_lote_de_carga(lote_de_carga); 
+    cargar_lote_de_proceso(lote_de_proceso, march_logins);
+    mostrar_lote_de_carga(lote_de_carga);
     mostrar_lote_de_proceso(lote_de_carga, lote_de_proceso);
     consulta_A(lote_de_carga, lote_de_proceso);
     consulta_B(lote_de_carga, lote_de_proceso);
     consulta_C(lote_de_carga, march_logins);
     */
+
+   return 0;
 }
 
 /*
