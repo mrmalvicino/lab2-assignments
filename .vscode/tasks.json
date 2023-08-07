@@ -2,8 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "shell",
       "label": "C/C++: clang++",
+      "detail": "MacOs",
+      "type": "shell",
       "command": "/usr/bin/clang++",
       "args": [
         "-std=c++17",
@@ -19,13 +20,13 @@
       "problemMatcher": ["$gcc"],
       "group": {
         "kind": "build",
-        "isDefault": true
-      },
-      "detail": "MacOs"
+        "isDefault": false
+      }
     },
     {
-      "type": "shell",
       "label": "C/C++: g++",
+      "detail": "Linux",
+      "type": "shell",
       "command": "/usr/bin/g++",
       "args": [
         "-g",
@@ -37,8 +38,47 @@
         "cwd": "/usr/bin"
       },
       "problemMatcher": ["$gcc"],
-      "group": "build",
-      "detail": "Linux"
+      "group": "build"
+    },
+    {
+      "label": "C/C++: clang++ (pedantic)",
+      "detail": "MacOs",
+      "type": "shell",
+      "command": "clang++",
+      "args": [
+          "-Wall",
+          "-Wextra",
+          "-pedantic",
+          "-std=c++17",
+          "new-program/main.cpp",
+          "new-program/functions.cpp",
+          "-o",
+          "${fileDirname}/bin/${fileBasenameNoExtension}"
+      ],
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      }
+    },
+    {
+      "label": "C/C++: g++ (pedantic)",
+      "detail": "Linux",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+          "-Wall",
+          "-Wextra",
+          "-pedantic",
+          "-std=c++17",
+          "new-program/main.cpp",
+          "new-program/functions.cpp",
+          "-o",
+          "${fileDirname}/bin/${fileBasenameNoExtension}"
+      ],
+      "group": {
+          "kind": "build",
+          "isDefault": true
+      }
     }
   ]
   }
