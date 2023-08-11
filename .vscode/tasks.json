@@ -52,8 +52,8 @@
           "-pedantic-errors",
           "-std=c++17",
           "-std=c++14",
-          "new-program/main.cpp",
-          "new-program/functions.cpp",
+          "${fileDirname}/main.cpp",
+          "${fileDirname}/functions.cpp",
           "-o",
           "${fileDirname}/bin/${fileBasenameNoExtension}"
       ],
@@ -72,8 +72,8 @@
           "-Wextra",
           "-pedantic",
           "-std=c++17",
-          "new-program/main.cpp",
-          "new-program/functions.cpp",
+          "${fileDirname}/main.cpp",
+          "${fileDirname}/functions.cpp",
           "-o",
           "${fileDirname}/bin/${fileBasenameNoExtension}"
       ],
