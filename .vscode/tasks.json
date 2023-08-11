@@ -38,8 +38,7 @@
         "cwd": "/usr/bin"
       },
       "problemMatcher": ["$gcc"],
-      "group": "build",
-      "isDefault": false
+      "group": "build"
     },
     {
       "label": "C/C++: clang++ (pedantic)",
