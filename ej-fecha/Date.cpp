@@ -58,7 +58,7 @@ void Date::add_days(int amount_days){
     }
 }
 
-std::string to_string(){
+std::string Date::to_string(){
     std::string dd;
     std::string mm;
     std::string yyyy = std::to_string(_year);
