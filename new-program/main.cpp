@@ -3,7 +3,7 @@
 
 int main(){
     int var1 = 3;
-    int var2;
+    int var2 = 0;
     std::cin >> var2;
     var1 = var2;
     hello_world();
