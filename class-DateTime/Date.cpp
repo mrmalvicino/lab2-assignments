@@ -5,7 +5,7 @@
 Date::Date(){
     set_day(1);
     set_month(1);
-    set_year(_DEFAULT_YEAR);
+    set_year(0);
 }
 
 Date::Date(int day, int month, int year){
@@ -16,7 +16,7 @@ Date::Date(int day, int month, int year){
     } else{
         set_day(1);
         set_month(1);
-        set_year(_DEFAULT_YEAR);
+        set_year(0);
     }
 }
 

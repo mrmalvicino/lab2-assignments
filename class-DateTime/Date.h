@@ -18,7 +18,6 @@ class Date{
 
     private:
         // Attributes
-        const int _DEFAULT_YEAR = 2023;
         int _day;
         int _month;
         int _year;

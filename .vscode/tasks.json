@@ -3,20 +3,17 @@
     "tasks": [
         {
             "label": "C/C++: clang++",
-            "detail": "MacOs",
+            "detail": "MacOs: Build including all *.cpp files",
             "type": "shell",
-            "command": "/usr/bin/clang++",
+            "command": "clang++",
             "args": [
                 "-std=c++17",
                 "-stdlib=libc++",
                 "-g",
-                "${file}",
+                "${fileDirname}/*.cpp",
                 "-o",
                 "${fileDirname}/bin/${fileBasenameNoExtension}"
             ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
             "problemMatcher": [
                 "$gcc"
             ],
@@ -25,13 +22,31 @@
             }
         },
         {
+            "label": "C/C++: clang++",
+            "detail": "MacOS: Build including all *.cpp files with pedantic and ISO flags.",
+            "type": "shell",
+            "command": "clang++",
+            "args": [
+                "-Wall",
+                "-Wextra",
+                "-pedantic",
+                "-pedantic-errors",
+                "-std=c++17",
+                "-std=c++14",
+                "${fileDirname}/*.cpp",
+                "-o",
+                "${fileDirname}/bin/${fileBasenameNoExtension}"
+            ],
+            "group": "build"
+        },
+        {
             "label": "C/C++: g++",
-            "detail": "Linux",
+            "detail": "Linux: Build including all *.cpp files.",
             "type": "shell",
             "command": "/usr/bin/g++",
             "args": [
                 "-g",
-                "${file}",
+                "${fileDirname}/*.cpp",
                 "-o",
                 "${fileDirname}/bin/${fileBasenameNoExtension}"
             ],
@@ -44,27 +59,8 @@
             "group": "build"
         },
         {
-            "label": "C/C++: clang++ (pedantic)",
-            "detail": "MacOs",
-            "type": "shell",
-            "command": "clang++",
-            "args": [
-                "-Wall",
-                "-Wextra",
-                "-pedantic",
-                "-pedantic-errors",
-                "-std=c++17",
-                "-std=c++14",
-                "${fileDirname}/main.cpp",
-                "${fileDirname}/functions.cpp",
-                "-o",
-                "${fileDirname}/bin/${fileBasenameNoExtension}"
-            ],
-            "group": "build"
-        },
-        {
-            "label": "C/C++: g++ (pedantic)",
-            "detail": "Linux",
+            "label": "C/C++: g++",
+            "detail": "Linux: Build including all *.cpp files with pedantic and ISO flags.",
             "type": "shell",
             "command": "g++",
             "args": [
@@ -72,8 +68,7 @@
                 "-Wextra",
                 "-pedantic",
                 "-std=c++17",
-                "${fileDirname}/main.cpp",
-                "${fileDirname}/functions.cpp",
+                "${fileDirname}/*.cpp",
                 "-o",
                 "${fileDirname}/bin/${fileBasenameNoExtension}"
             ],
@@ -83,14 +78,13 @@
         },
         {
             "label": "C/C++: g++.exe",
-            "detail": "Windows",
+            "detail": "Windows: Build including all *.cpp files.",
             "type": "cppbuild",
             "command": "C:\\w64devkit\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${fileDirname}/main.cpp",
-                "${fileDirname}/functions.cpp",
+                "${fileDirname}/*.cpp",
                 "-o",
                 "${fileDirname}/bin/${fileBasenameNoExtension}.exe"
             ],
