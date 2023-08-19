@@ -3,20 +3,18 @@
 // Construct
 
 Date::Date(){
-    set_day(1);
-    set_month(1);
-    set_year(0);
+    std::time_t now = std::time(NULL);
+    std::tm * local_time = std::localtime(& now);
+    _day = (* local_time).tm_mday;
+    _month = (* local_time).tm_mon + 1;
+    _year = (* local_time).tm_year + 1900;
 }
 
 Date::Date(int day, int month, int year){
     if(0 < day && day <= days_in_month(month, year) && 0 < month && month <= 12 && 0 < year){
-        set_day(day);
-        set_month(month);
-        set_year(year);
-    } else{
-        set_day(1);
-        set_month(1);
-        set_year(0);
+        _day = day;
+        _month = month;
+        _year = year;
     }
 }
 
