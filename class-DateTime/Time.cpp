@@ -11,23 +11,31 @@ Time::Time(){
 }
 
 Time::Time(int second, int minute, int hour){
-    _second = second;
-    _minute = minute;
-    _hour = hour;
+    if(0 <= second && second < 60 && 0 <= minute && minute < 60 && 0 <= hour && hour < 24){
+        _second = second;
+        _minute = minute;
+        _hour = hour;
+    }
 }
 
 // Public Methods
 
 void Time::set_second(int second){
-    _second = second;
+    if(0 <= second && second < 60){
+        _second = second;
+    }
 }
 
 void Time::set_minute(int minute){
-    _minute = minute;
+    if(0 <= minute && minute < 60){
+        _minute = minute;
+    }
 }
 
 void Time::set_hour(int hour){
-    _hour = hour;
+    if(0 <= hour && hour < 24){
+        _hour = hour;
+    }
 }
 
 int Time::get_second(){

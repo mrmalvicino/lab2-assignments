@@ -25,15 +25,19 @@ void DateTime::set_time(Time time){
 }
 
 void DateTime::set_date(int day, int month, int year){
-    _date.set_day(day);
-    _date.set_month(month);
-    _date.set_year(year);
+    if(0 < day && day <= _date.get_days_in_month(month, year) && 0 < month && month <= 12 && 0 < year){
+        _date.set_day(day);
+        _date.set_month(month);
+        _date.set_year(year);
+    }
 }
 
 void DateTime::set_time(int second, int minute, int hour){
-    _time.set_second(second);
-    _time.set_minute(minute);
-    _time.set_hour(hour);
+    if(0 <= second && second < 60 && 0 <= minute && minute < 60 && 0 <= hour && hour < 24){
+        _time.set_second(second);
+        _time.set_minute(minute);
+        _time.set_hour(hour);
+    }
 }
 
 Date DateTime::get_date(){

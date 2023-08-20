@@ -14,6 +14,7 @@ class Date{
         int get_day();
         int get_month();
         int get_year();
+        int get_days_in_month(int month, int year);
         void add_days(int amount_days);
         std::string to_string();
 
@@ -24,7 +25,6 @@ class Date{
         int _year;
 
         // Private Methods
-        int days_in_month(int month, int year);
         void increase_day();
         void decrease_day();
 };
