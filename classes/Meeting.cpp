@@ -18,10 +18,16 @@ void Meeting::add_participant(std::string participant_first_name, std::string pa
 }
 
 std::string Meeting::get_participant(int participant_index){
-    std::string first_name = _participants[participant_index].get_first_name();
-    std::string last_name = _participants[participant_index].get_last_name();
+    std::string participant_full_name = "";
+    
+    if(participant_index < _amount_of_participants){
+        std::string first_name = _participants[participant_index].get_first_name();
+        std::string last_name = _participants[participant_index].get_last_name();
 
-    return first_name + " " + last_name;
+        participant_full_name = first_name + " " + last_name;
+    }
+
+    return participant_full_name;
 }
 
 int Meeting::get_amount_of_participants(){
