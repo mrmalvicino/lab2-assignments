@@ -20,37 +20,37 @@ Time::Time(int second, int minute, int hour){
 
 // Public Methods
 
-void Time::set_second(int second){
+void Time::setSecond(int second){
     if(0 <= second && second < 60){
         _second = second;
     }
 }
 
-void Time::set_minute(int minute){
+void Time::setMinute(int minute){
     if(0 <= minute && minute < 60){
         _minute = minute;
     }
 }
 
-void Time::set_hour(int hour){
+void Time::setHour(int hour){
     if(0 <= hour && hour < 24){
         _hour = hour;
     }
 }
 
-int Time::get_second(){
+int Time::getSecond(){
     return _second;
 }
 
-int Time::get_minute(){
+int Time::getMinute(){
     return _minute;
 }
 
-int Time::get_hour(){
+int Time::getHour(){
     return _hour;
 }
 
-std::string Time::to_string(){
+std::string Time::toString(){
     std::string ss;
     std::string mm;
     std::string hh;

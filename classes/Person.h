@@ -7,10 +7,10 @@ class Person{
         Person(std::string first_name, std::string last_name);
 
         // Public Methods
-        void set_first_name(std::string first_name);
-        void set_last_name(std::string last_name);
-        std::string get_first_name();
-        std::string get_last_name();
+        void setFirstName(std::string first_name);
+        void setLastName(std::string last_name);
+        std::string getFirstName();
+        std::string getLastName();
 
     private:
         // Attributes

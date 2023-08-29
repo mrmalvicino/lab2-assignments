@@ -11,7 +11,7 @@ Date::Date(){
 }
 
 Date::Date(int day, int month, int year){
-    if(0 < day && day <= get_days_in_month(month, year) && 0 < month && month <= 12 && 0 < year){
+    if(0 < day && day <= getDaysInMonth(month, year) && 0 < month && month <= 12 && 0 < year){
         _day = day;
         _month = month;
         _year = year;
@@ -20,49 +20,49 @@ Date::Date(int day, int month, int year){
 
 // Public Methods
 
-void Date::set_day(int day){
+void Date::setDay(int day){
     if(0 < day && day <= 31){
         _day = day;
     }
 }
 
-void Date::set_month(int month){
+void Date::setMonth(int month){
     if(0 < month && month <= 12){
         _month = month;
     }
 }
 
-void Date::set_year(int year){
+void Date::setYear(int year){
     if(0 < year){
         _year = year;
     }
 }
 
-int Date::get_day(){
+int Date::getDay(){
     return _day;
 }
 
-int Date::get_month(){
+int Date::getMonth(){
     return _month;
 }
 
-int Date::get_year(){
+int Date::getYear(){
     return _year;
 }
 
-void Date::add_days(int amount_days){
+void Date::addDays(int amount_days){
     if(0 < amount_days){
         for(int i = 0; i < amount_days; i++){
-            increase_day();
+            increaseDay();
         }
     } else if (amount_days < 0){
         for(int i = 0; i < - amount_days; i++){
-            decrease_day();
+            decreaseDay();
         }
     }
 }
 
-std::string Date::to_string(){
+std::string Date::toString(){
     std::string dd;
     std::string mm;
     std::string yyyy = std::to_string(_year);
@@ -82,7 +82,7 @@ std::string Date::to_string(){
     return dd + "/" + mm + "/" + yyyy;
 }
 
-int Date::get_days_in_month(int month, int year){
+int Date::getDaysInMonth(int month, int year){
     int amount_days = 31; // Enero, marzo, mayo, julio, agosto, octubre, diciembre
 
     if (month == 4 || month == 6 || month == 9 || month == 11){
@@ -100,8 +100,8 @@ int Date::get_days_in_month(int month, int year){
 
 // Private Methods
 
-void Date::increase_day(){
-    if(_day == get_days_in_month(_month, _year)){
+void Date::increaseDay(){
+    if(_day == getDaysInMonth(_month, _year)){
         _day = 1;
 
         if(_month == 12){
@@ -115,14 +115,14 @@ void Date::increase_day(){
     }
 }
 
-void Date::decrease_day(){
+void Date::decreaseDay(){
     if(_day == 1){
         if(_month == 1){
-            _day = get_days_in_month(12, _year - 1);
+            _day = getDaysInMonth(12, _year - 1);
             _month = 12;
             _year --;
         } else{
-            _day = get_days_in_month(_month - 1, _year);
+            _day = getDaysInMonth(_month - 1, _year);
             _month --;
         }
     } else{

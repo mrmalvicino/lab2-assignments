@@ -9,13 +9,13 @@ class DateTime{
         DateTime(int day, int month, int year, int second, int minute, int hour);
 
         // Public Methods
-        void set_date(Date date);
-        void set_time(Time time);
-        void set_date(int day, int month, int year);
-        void set_time(int second, int minute, int hour);
-        Date get_date();
-        Time get_time();
-        std::string to_string();
+        void setDate(Date date);
+        void setTime(Time time);
+        void setDate(int day, int month, int year);
+        void setTime(int second, int minute, int hour);
+        Date getDate();
+        Time getTime();
+        std::string toString();
 
     private:
         // Attributes

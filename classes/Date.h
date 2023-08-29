@@ -8,15 +8,15 @@ class Date{
         Date(int day, int month, int year);
 
         // Public Methods
-        void set_day(int day);
-        void set_month(int month);
-        void set_year(int year);
-        int get_day();
-        int get_month();
-        int get_year();
-        int get_days_in_month(int month, int year);
-        void add_days(int amount_days);
-        std::string to_string();
+        void setDay(int day);
+        void setMonth(int month);
+        void setYear(int year);
+        int getDay();
+        int getMonth();
+        int getYear();
+        int getDaysInMonth(int month, int year);
+        void addDays(int amount_days);
+        std::string toString();
 
     private:
         // Attributes
@@ -25,6 +25,6 @@ class Date{
         int _year;
 
         // Private Methods
-        void increase_day();
-        void decrease_day();
+        void increaseDay();
+        void decreaseDay();
 };

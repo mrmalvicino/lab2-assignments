@@ -8,13 +8,13 @@ class Time{
         Time(int second, int minute, int hour);
 
         // Public Methods
-        void set_second(int second);
-        void set_minute(int minute);
-        void set_hour(int hour);
-        int get_second();
-        int get_minute();
-        int get_hour();
-        std::string to_string();
+        void setSecond(int second);
+        void setMinute(int minute);
+        void setHour(int hour);
+        int getSecond();
+        int getMinute();
+        int getHour();
+        std::string toString();
 
     private:
         // Attributes
