@@ -4,7 +4,8 @@
 class Meeting{
     public:
         // Construct
-        Meeting();
+        Meeting(int max_number_of_participants);
+        ~Meeting();
 
         // Public Methods
         void addParticipant(std::string participant_first_name, std::string participant_last_name);
@@ -22,7 +23,8 @@ class Meeting{
 
     private:
         // Attributes
-        Person _participants[5];
+        int _max_amount_of_participants;
+        Person *_participants;
         int _amount_of_participants;
         DateTime _date_time;
         std::string _where;

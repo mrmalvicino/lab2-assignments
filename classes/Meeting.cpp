@@ -2,19 +2,40 @@
 
 // Construct
 
-Meeting::Meeting(){
+Meeting::Meeting(int max_number_of_participants){
     _amount_of_participants = 0;
     _where = "N/A";
     _topic = "N/A";
     _duration = 0;
+
+    if(0 < max_number_of_participants){
+        _participants = nullptr;
+        _participants = new Person[max_number_of_participants];
+
+        if(_participants == nullptr){
+            _max_amount_of_participants = 0;
+        } else{
+            _max_amount_of_participants = max_number_of_participants;
+        }
+    } else{
+        _max_amount_of_participants = 0;
+    }
+}
+
+Meeting::~Meeting(){
+    if(_participants == nullptr){
+        delete [] _participants;
+    }
 }
 
 // Public Methods
 
 void Meeting::addParticipant(std::string participant_first_name, std::string participant_last_name){
-    _participants[_amount_of_participants].setFirstName(participant_first_name);
-    _participants[_amount_of_participants].setLastName(participant_last_name);
-    _amount_of_participants ++;
+    if(_amount_of_participants < _max_amount_of_participants){
+        _participants[_amount_of_participants].setFirstName(participant_first_name);
+        _participants[_amount_of_participants].setLastName(participant_last_name);
+        _amount_of_participants ++;
+    }
 }
 
 std::string Meeting::getParticipant(int participant_index){
