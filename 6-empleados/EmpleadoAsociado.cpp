@@ -1,26 +1,27 @@
 #include "EmpleadoAsociado.h"
 
 EmpleadoAsociado::EmpleadoAsociado() : Empleado() {
-    setCantidadDeHoras(8);
+    setSalarioFijo(500000);
+    setAniosDeIngreso(0);
 }
 
-EmpleadoAsociado::EmpleadoAsociado(int legajo, std::string nombre, std::string apellido, std::string email, int salario_base, int valor_porcentual) {
-    setCantidadDeHoras(salario_base);
-    setValorHora(valor_porcentual);
+EmpleadoAsociado::EmpleadoAsociado(int legajo, std::string nombre, std::string apellido, std::string email, int salario_fijo, int anios_de_ingreso) {
+    setSalarioFijo(salario_fijo);
+    setAniosDeIngreso(anios_de_ingreso);
 }
 
-void EmpleadoAsociado::setCantidadDeHoras(int salario_base) {
-    _salario_base = salario_base;
+void EmpleadoAsociado::setSalarioFijo(int salario_fijo) {
+    _salario_fijo = salario_fijo;
 }
 
-int EmpleadoAsociado::getCantidadDeHoras() {
-    return _salario_base;
+int EmpleadoAsociado::getSalarioFijo() {
+    return _salario_fijo;
 }
 
-void EmpleadoAsociado::setValorHora(int valor_porcentual) {
-    _valor_porcentual = valor_porcentual;
+void EmpleadoAsociado::setAniosDeIngreso(int anios_de_ingreso) {
+    _anios_de_ingreso = anios_de_ingreso;
 }
 
-int EmpleadoAsociado::getValorHora() {
-    return _valor_porcentual;
+int EmpleadoAsociado::getAniosDeIngreso() {
+    return _anios_de_ingreso;
 }

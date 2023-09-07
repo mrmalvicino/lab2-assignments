@@ -1,7 +1,7 @@
 #include "EmpleadoPorComision.h"
 
 EmpleadoPorComision::EmpleadoPorComision() : Empleado() {
-    setSalarioBase(50000);
+    setSalarioBase(100000);
     setValorPorcentual(2000);
 }
 

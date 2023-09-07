@@ -3,16 +3,16 @@
 #include <string>
 #include "Empleado.h"
 
-class EmpleadoPorComision : public Empleado {
+class EmpleadoAsociado : public Empleado {
     public:
-        EmpleadoPorComision();
-        EmpleadoPorComision(int legajo, std::string nombre, std::string apellido, std::string email, int salario_base, int valor_porcentual);
-        void setCantidadDeHoras(int salario_base);
-        int getCantidadDeHoras();
-        void setValorHora(int valor_porcentual);
-        int getValorHora();
+        EmpleadoAsociado();
+        EmpleadoAsociado(int legajo, std::string nombre, std::string apellido, std::string email, int salario_fijo, int anios_de_ingreso);
+        void setSalarioFijo(int salario_fijo);
+        int getSalarioFijo();
+        void setAniosDeIngreso(int anios_de_ingreso);
+        int getAniosDeIngreso();
 
     private:
-        int _salario_base;
-        int _valor_porcentual;
+        int _salario_fijo;
+        int _anios_de_ingreso;
 };
