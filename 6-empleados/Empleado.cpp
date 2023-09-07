@@ -38,10 +38,10 @@ std::string Empleado::getApellido() {
     return _apellido;
 }
 
-void Empleado::setApellido(std::string email) {
+void Empleado::setEmail(std::string email) {
     _email = email;
 }
 
-std::string Empleado::getApellido() {
+std::string Empleado::getEmail() {
     return _email;
 }
