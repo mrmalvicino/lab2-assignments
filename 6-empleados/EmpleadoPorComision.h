@@ -7,10 +7,10 @@ class EmpleadoPorComision : public Empleado {
     public:
         EmpleadoPorComision();
         EmpleadoPorComision(int legajo, std::string nombre, std::string apellido, std::string email, int salario_base, int valor_porcentual);
-        void setCantidadDeHoras(int salario_base);
-        int getCantidadDeHoras();
-        void setValorHora(int valor_porcentual);
-        int getValorHora();
+        void setSalarioBase(int salario_base);
+        int getSalarioBase();
+        void setValorPorcentual(int valor_porcentual);
+        int getValorPorcentual();
 
     private:
         int _salario_base;

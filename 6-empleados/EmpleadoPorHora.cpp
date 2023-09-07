@@ -2,6 +2,7 @@
 
 EmpleadoPorHora::EmpleadoPorHora() : Empleado() {
     setCantidadDeHoras(8);
+    setValorHora(2000);
 }
 
 EmpleadoPorHora::EmpleadoPorHora(int legajo, std::string nombre, std::string apellido, std::string email, int cantidad_de_horas, int valor_hora) {

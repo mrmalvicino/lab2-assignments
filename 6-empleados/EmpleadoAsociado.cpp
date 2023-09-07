@@ -1,26 +1,26 @@
-#include "EmpleadoPorComision.h"
+#include "EmpleadoAsociado.h"
 
-EmpleadoPorComision::EmpleadoPorComision() : Empleado() {
+EmpleadoAsociado::EmpleadoAsociado() : Empleado() {
     setCantidadDeHoras(8);
 }
 
-EmpleadoPorComision::EmpleadoPorComision(int legajo, std::string nombre, std::string apellido, std::string email, int salario_base, int valor_porcentual) {
+EmpleadoAsociado::EmpleadoAsociado(int legajo, std::string nombre, std::string apellido, std::string email, int salario_base, int valor_porcentual) {
     setCantidadDeHoras(salario_base);
     setValorHora(valor_porcentual);
 }
 
-void EmpleadoPorComision::setCantidadDeHoras(int salario_base) {
+void EmpleadoAsociado::setCantidadDeHoras(int salario_base) {
     _salario_base = salario_base;
 }
 
-int EmpleadoPorComision::getCantidadDeHoras() {
+int EmpleadoAsociado::getCantidadDeHoras() {
     return _salario_base;
 }
 
-void EmpleadoPorComision::setValorHora(int valor_porcentual) {
+void EmpleadoAsociado::setValorHora(int valor_porcentual) {
     _valor_porcentual = valor_porcentual;
 }
 
-int EmpleadoPorComision::getValorHora() {
+int EmpleadoAsociado::getValorHora() {
     return _valor_porcentual;
 }
