@@ -270,7 +270,7 @@ class Terminal {
         #endif
     }
 
-    void Terminal::cleanBuffer() {
+    void cleanBuffer() {
         int aux;
         while ((aux = std::cin.get()) != '\n' && aux != EOF) {}
     }
@@ -452,30 +452,36 @@ class ObrasArchivo {
 
 int main() {
     Terminal terminal;
+    Obra obra;
     ObrasArchivo obras_archivo;
     ObrasArchivo obras_ejecucion_archivo("obras_ejecucion.dat");
 
     int cant_obras = obras_archivo.getAmountOfRegisters();
+    obras_ejecucion_archivo.createEmptyObraArchive();
 
-    Obra * obras_array = new Obra[cant_obras];
+    for (int i = 0; i < cant_obras; i ++) {
+        obra = obras_archivo.read(i);
 
-    if (obras_array == NULL) {
-        std::cout << "Error de memoria RAM: No se pudo asignar la memoria requerida al exportar backup.";
-    } else {
-        for (int i = 0; i < cant_obras; i ++) {
-            obras_array[i] = obras_archivo.read(i);
+        if (obra.getEstadoDeEjecucion() == 3) {
+            obras_ejecucion_archivo.write(obra);
         }
+    }
 
-        obras_ejecucion_archivo.createEmptyObraArchive();
+    std::cout << "\nTODOS: " << cant_obras << "\n";
 
-        for (int i = 0; i < cant_obras; i ++) {
-            obras_ejecucion_archivo.write(obras_array[i]);
-        }
+    for (int i = 0; i < cant_obras; i ++) {
+        obra = obras_archivo.read(i);
+        std::cout << "COD. DE OBRA:" << obra.getCodigoDeObra() << "\nDIR:" << obra.getDireccion() << "\nESTADO:" << obra.getEstadoDeEjecucion() << "\n\n";
+    }
 
-        delete [] obras_array;
+    int cant_obras_ejecucion = obras_ejecucion_archivo.getAmountOfRegisters();
 
-        std::cout << "Backup exportado correctamente.\n";
-        terminal.pause();
+    std::cout << "\nEJECUCION: " << cant_obras_ejecucion << "\n";
+
+    for (int i = 0; i < cant_obras_ejecucion; i ++) {
+        obra = obras_ejecucion_archivo.read(i);
+        std::cout << "COD. DE OBRA:" << obra.getCodigoDeObra() << "\nDIR:" << obra.getDireccion() << "\nESTADO:" << obra.getEstadoDeEjecucion() << "\n\n";
+    }
 }
 
 /*
