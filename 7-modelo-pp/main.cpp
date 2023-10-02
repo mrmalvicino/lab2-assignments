@@ -1,346 +1,8 @@
 #include <iostream>
 #include <cstring>
 #include <cstdio>
-// #include "parcialm1.h"
-
-class Terminal {
-    public:
-
-    Terminal() {
-        setLineLenght(50);
-        setBackCaption("ATRÁS");
-    }
-
-    void setLineLenght(int line_lenght) {
-        _line_lenght = line_lenght;
-    }
-
-    int getLineLenght() {
-        return _line_lenght;
-    }
-
-    void setBackCaption(const char * back_caption) {
-        strcpy(_back_caption, back_caption);
-    }
-
-    const char * getBackCaption() {
-        return _back_caption;
-    }
-
-    void clear() {
-        #ifdef _WIN64
-            system("cls");
-        #endif
-
-        #ifdef __linux__
-            system("clear");
-        #endif
-
-        #ifdef __APPLE__
-            system("clear");
-        #endif
-    }
-
-    void pause() {
-        #ifdef _WIN64
-            system("pause");
-        #endif
-
-        #ifdef __linux__
-            int aux = 1;
-
-            do{
-                std::cout << "Ingresar 0 para continuar.\n";
-                std::cin >> aux;
-            } while (aux != 0);
-        #endif
-
-        #ifdef __APPLE__
-            int aux = 1;
-            std::cout << "\nIngresar 0 para continuar.\n";
-
-            while (true) {
-                if (std::cin >> aux && aux == 0) {
-                    break;
-                } else {
-                    std::cin.clear();
-                    cleanBuffer();
-                    std::cout << "Ingresar 0 para continuar.\n";
-                }
-            }
-        #endif
-    }
-
-    void printLine() {
-        for (int i = 0; i < getLineLenght(); i ++) {
-            std::cout << "-";
-        }
-
-        std::cout << "\n";
-    }
-
-    void centerAndPrint(std::string text) {
-        int blanks = (getLineLenght() - text.length()) / 2;
-        
-        for (int i = 0; i < blanks; i ++) {
-            std::cout << " ";
-        }
-
-        std::cout << text;
-
-        for (int i = 0; i < blanks; i ++) {
-            std::cout << " ";
-        }
-
-        std::cout << "\n";
-    }
-
-    void printBackOption() {
-        std::cout << "(0) " << getBackCaption() << "\n";
-    }
-
-    void displayMenuHeader(std::string title) {
-        printLine();
-        centerAndPrint(title);
-        printLine();
-    }
-
-    void displayMenuFooter() {
-        printLine();
-        printBackOption();
-    }
-
-    void printBool(bool parameter, std::string text_if_true, std::string text_if_false) {
-        if (parameter == true) {
-            std::cout << text_if_true;
-        } else {
-            std::cout << text_if_false;
-        }
-    }
-
-    bool validateBool() {
-        char input;
-        bool rtn;
-
-        while (true) {
-            if (std::cin >> input && (input == 'y' || input == 'Y' || input == 's' || input == 'S' || input == 'n' || input == 'N')) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                std::cout << "Error de validación: Ingresar 'S' para confirmar o 'N' para denegar.\n";
-            }
-        }
-
-        if (input == 'y' || input == 'Y' || input == 's' || input == 'S') {
-            rtn = true;
-        } else {
-            rtn = false;
-        }
-
-        return rtn;
-    }
-
-    int validateInt() {
-        int rtn;
-        
-        while (true) {
-            if (std::cin >> rtn) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                std::cout << "Error de validación: Ingrese un número entero.\n";
-            }
-        }
-
-        return rtn;
-    }
-
-    int validateInt(int min) {
-        int rtn;
-        
-        while (true) {
-            if (std::cin >> rtn && min <= rtn) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                std::cout << "Error de validación: Ingrese un número entero mayor o igual a " << min << ".\n";
-            }
-        }
-
-        return rtn;
-    }
-
-    int validateInt(int min, int max) {
-        int rtn;
-        
-        while (true) {
-            if (std::cin >> rtn && min <= rtn && rtn <= max) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                if (min < max) {
-                    std::cout << "Error de validación: Ingrese un número entero mayor (o igual) a " << min << " y menor (o igual) a " << max << ".\n";
-                } else if (min == max) {
-                    std::cout << "Error de validación: El único ingreso válido es " << min << ".\n";
-                } else {
-                    std::cout << "Error de validación: Los extremos están definidos de manera que no haya ingresos válidos.\n";
-                }
-            }
-        }
-
-        return rtn;
-    }
-
-    long long int validateLongInt() {
-        long long int rtn;
-        
-        while (true) {
-            if (std::cin >> rtn) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                std::cout << "Error de validación: Ingrese un número entero.\n";
-            }
-        }
-
-        return rtn;
-    }
-
-    long long int validateLongInt(int min) {
-        long long int rtn;
-        
-        while (true) {
-            if (std::cin >> rtn && min <= rtn) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                std::cout << "Error de validación: Ingrese un número entero mayor o igual a " << min << ".\n";
-            }
-        }
-
-        return rtn;
-    }
-
-    long long int validateLongInt(int min, int max) {
-        long long int rtn;
-        
-        while (true) {
-            if (std::cin >> rtn && min <= rtn && rtn <= max) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-                if (min < max) {
-                    std::cout << "Error de validación: Ingrese un número entero mayor (o igual) a " << min << " y menor (o igual) a " << max << ".\n";
-                } else if (min == max) {
-                    std::cout << "Error de validación: El único ingreso válido es " << min << ".\n";
-                } else {
-                    std::cout << "Error de validación: Los extremos están definidos de manera que no haya ingresos válidos.\n";
-                }
-            }
-        }
-
-        return rtn;
-    }
-
-    char validateChar() {
-        char rtn;
-        
-        while (true) {
-            if (std::cin >> rtn) {
-                break;
-            } else {
-                std::cin.clear();
-                cleanBuffer();
-            }
-        }
-
-        return rtn;
-    }
-
-    void configureUTF8() {
-        #ifdef _WIN64
-            system("chcp 65001");
-        #endif
-    }
-
-    void cleanBuffer() {
-        int aux;
-        while ((aux = std::cin.get()) != '\n' && aux != EOF) {}
-    }
-
-    private:
-
-    int _line_lenght;
-    char _back_caption[30];
-};
-
-class Obra {
-    public:
-
-    void setCodigoDeObra(const char * codigo_de_obra) {
-        strcpy(_codigo_de_obra, codigo_de_obra);
-    }
-
-    const char * getCodigoDeObra() {
-        return _codigo_de_obra;
-    }
-
-    void setDireccion(const char * direccion) {
-        strcpy(_direccion, direccion);
-    }
-
-    const char * getDireccion() {
-        return _direccion;
-    }
-
-    void setProvincia(int provincia) {
-        _provincia = provincia;
-    }
-
-    int getProvincia() {
-        return _provincia;
-    }
-
-    void setSuperficie(int superficie) {
-        _superficie = superficie;
-    }
-
-    int getSuperficie() {
-        return _superficie;
-    }
-
-    void setEstadoDeEjecucion(int estado_de_ejecucion) {
-        _estado_de_ejecucion = estado_de_ejecucion;
-    }
-
-    int getEstadoDeEjecucion() {
-        return _estado_de_ejecucion;
-    }
-
-    void setActivo(bool activo) {
-        _activo = activo;
-    }
-
-    bool getActivo() {
-        return _activo;
-    }
-
-    private:
-
-    char _codigo_de_obra[5];
-    char _direccion[30];
-    int _provincia; // de 1 a 24
-    int _superficie;
-    int _estado_de_ejecucion; // 1 proyecto | 2 espera | 3 ejecucion | 4 terminada | 5 suspendida
-    bool _activo; // 1 si | 2 no
-};
+using namespace std;
+#include "parcialm1.h"
 
 class ObrasArchivo {
     public:
@@ -411,7 +73,7 @@ class ObrasArchivo {
         Obra reg;
         reg = read(i);
 
-        while (reg.getCodigoDeObra() != codigo_de_obra && i < getAmountOfRegisters()) {
+        while (reg.getCodigoObra() != codigo_de_obra && i < getAmountOfRegisters()) {
             i ++;
             reg = read(i);
         }
@@ -451,7 +113,6 @@ class ObrasArchivo {
 };
 
 int main() {
-    Terminal terminal;
     Obra obra;
     ObrasArchivo obras_archivo;
     ObrasArchivo obras_ejecucion_archivo("obras_ejecucion.dat");
@@ -462,7 +123,7 @@ int main() {
     for (int i = 0; i < cant_obras; i ++) {
         obra = obras_archivo.read(i);
 
-        if (obra.getEstadoDeEjecucion() == 3) {
+        if (obra.getEstadoEjecucion() == 3) {
             obras_ejecucion_archivo.write(obra);
         }
     }
@@ -471,7 +132,7 @@ int main() {
 
     for (int i = 0; i < cant_obras; i ++) {
         obra = obras_archivo.read(i);
-        std::cout << "COD. DE OBRA:" << obra.getCodigoDeObra() << "\nDIR:" << obra.getDireccion() << "\nESTADO:" << obra.getEstadoDeEjecucion() << "\n\n";
+        std::cout << "COD. DE OBRA:" << obra.getCodigoObra() << "\nDIR:" << obra.getDireccion() << "\nESTADO:" << obra.getEstadoEjecucion() << "\n\n";
     }
 
     int cant_obras_ejecucion = obras_ejecucion_archivo.getAmountOfRegisters();
@@ -480,8 +141,33 @@ int main() {
 
     for (int i = 0; i < cant_obras_ejecucion; i ++) {
         obra = obras_ejecucion_archivo.read(i);
-        std::cout << "COD. DE OBRA:" << obra.getCodigoDeObra() << "\nDIR:" << obra.getDireccion() << "\nESTADO:" << obra.getEstadoDeEjecucion() << "\n\n";
+        std::cout << "COD. DE OBRA:" << obra.getCodigoObra() << "\nDIR:" << obra.getDireccion() << "\nESTADO:" << obra.getEstadoEjecucion() << "\n\n";
     }
+
+    Proveedor proveedor;
+    ArchivoProveedor archivo_proveedores("proveedores.dat");
+
+    int cant_proveedores = archivo_proveedores.contarRegistros();
+    int cant_prooveedores_en_cada_provincia[24] = {};
+    int menor_cant_de_proveedores;
+    int provincia_con_menor_cant_de_proveedores;
+
+    for (int i = 0; i < cant_proveedores; i ++) {
+        proveedor = archivo_proveedores.leerRegistro(i);
+        cant_prooveedores_en_cada_provincia[proveedor.getProvincia() - 1] ++;
+    }
+
+    menor_cant_de_proveedores = cant_prooveedores_en_cada_provincia[0];
+    provincia_con_menor_cant_de_proveedores = 1;
+
+    for (int i = 1; i < 24; i ++) {
+        if (cant_prooveedores_en_cada_provincia[i] < menor_cant_de_proveedores && cant_prooveedores_en_cada_provincia[i] != 0) {
+            menor_cant_de_proveedores = cant_prooveedores_en_cada_provincia[i];
+            provincia_con_menor_cant_de_proveedores = i + 1;
+        }
+    }
+
+    std::cout << "provincia_con_menor_cant_de_proveedores: " << provincia_con_menor_cant_de_proveedores;
 }
 
 /*

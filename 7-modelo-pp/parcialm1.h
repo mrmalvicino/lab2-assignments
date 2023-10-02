@@ -1,4 +1,4 @@
-///Ejercicio: modelo Parcial 1 de Programación II
+///Ejercicio: modelo Parcial 1 de Programaciï¿½n II
 ///Autor:DEK
 ///Fecha:
 ///Comentario:
