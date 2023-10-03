@@ -161,6 +161,7 @@ int main() {
     ArchivoDocentesAvanzados archivo_docentes_avanzados;
 
     int cant_jugadores = archivo_jugadores.contarRegistros();
+    int cant_equipos = archivo_equipos.contarRegistros();
     int numero_de_equipo;
     int nivel;
     int dia;
@@ -169,6 +170,9 @@ int main() {
 
     for (int i = 0; i < cant_jugadores; i ++) { // recorro jugadores
         jugador = archivo_jugadores.leerRegistro(i);
+
+        std::cout << "\n\nCLAUSTRO: " << jugador.getClaustro(); // VERIFICACION
+        std::cout << "\nID EQUIPO: " << jugador.getIdEquipo(); // VERIFICACION
 
         if (jugador.getClaustro() == 1 && jugador.getEstado()) { // si es docente
             numero_de_equipo = jugador.getIdEquipo(); // leo equipo al que pertenece el docente
@@ -188,7 +192,12 @@ int main() {
             }
         }
     }
-    std::cout << sizeof(Jugador);
+
+    for (int i = 0; i < cant_equipos; i ++) { // VERIFICACION
+        equipo = archivo_equipos.leerRegistro(i);
+        std::cout << "\n\nNivel de equipo " << i + 1 << ": " << equipo.getNivel();
+    }
+
     return 0;
 }
 
