@@ -198,6 +198,17 @@ int main() {
         std::cout << "\n\nNivel de equipo " << i + 1 << ": " << equipo.getNivel();
     }
 
+    std::cout << "\n\nDOCENTES AVANZADOS:\n";
+
+    int cant_docentes_avanzados = archivo_docentes_avanzados.getAmountOfRegisters();
+
+    for (int i = 0; i < cant_docentes_avanzados; i ++) {
+        docente_avanzado = archivo_docentes_avanzados.read(i);
+
+        std::cout << "DNI:" << docente_avanzado.getDni() << "\n";
+        std::cout << "Nombre y apellido:" << docente_avanzado.getNombre() << " " << docente_avanzado.getApellido() << "\n";
+    }
+
     return 0;
 }
 
