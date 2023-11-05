@@ -244,7 +244,49 @@ class Queue { // FIFO (First In First Out)
 };
 
 class Stack { // LIFO (Last In First Out)
+    public:
 
+    Stack(int size = 2) {
+        _size = size;
+        _array = new int[_size];
+        checkAllocation(_array);
+        _last = 0;
+    }
+
+    ~Stack() {
+        delete [] _array;
+    }
+
+    bool add(int input) {
+        if (_last == _size) {
+            return false;
+        }
+        _array[_last] = input;
+        _last ++;
+        return true;
+    }
+
+    bool remove(int & output) {
+        if (_last == 0) {
+            return false;
+        }
+        _last --;
+        output = _array[_last];
+        return true;
+    }
+
+    private:
+
+    int _size;
+    int _last;
+    int * _array;
+
+    void checkAllocation(int * arr) {
+        if (arr == NULL) {
+            std::cout << "Error de asignación de memoria.\n";
+            exit(1);
+        }
+    }
 };
 
 int main() {
@@ -362,7 +404,7 @@ int main() {
     std::cout << str_14 << "\n";
     */
 
-    // FIFO
+    // Queue FIFO
     /*
     Queue queue(5);
     int i = 1;
@@ -373,15 +415,24 @@ int main() {
     }
 
     while (queue.remove(aux)) {
-        std::cout << aux << "\t"; 
+        std::cout << aux << "\n"; 
     }
-
-    std::cout << "\n";
     */
 
-    // LIFO
+    // Stack LIFO
+    /*
+    Stack stack(5);
+    int i = 1;
+    int aux;
 
-    
+    while (stack.add(i)) {
+        i ++;
+    }
+
+    while (stack.remove(aux)) {
+        std::cout << aux << "\n"; 
+    }
+    */
 
     return 0;
 }
