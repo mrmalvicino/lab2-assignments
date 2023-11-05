@@ -4,103 +4,99 @@
 class String {
     public:
 
-    String(const char * str = "Hello world!") {
-        _length = strlen(str) + 1;
-        _string = new char[_length];
-        checkAllocation(_string);
-
-        strcpy(_string, str);
-        _string[_length - 1] = '\0';
+    String(const char * arr = "Hello world!") {
+        _size = strlen(arr) + 1;
+        _array = new char[_size];
+        checkAllocation(_array);
+        strcpy(_array, arr);
+        _array[_size - 1] = '\0';
     }
 
     String(int length) {
-        _length = length + 1;
-        _string = new char[_length];
-        checkAllocation(_string);
+        _size = length + 1;
+        _array = new char[_size];
+        checkAllocation(_array);
+        _array[_size - 1] = '\0';
 
-        for (int i = 0; i < _length - 1; i ++) {
-            _string[i] = 'a';
+        for (int i = 0; i < _size - 1; i ++) {
+            _array[i] = 'a';
         }
-
-        _string[_length - 1] = '\0';
     }
 
     ~String() {
-        delete [] _string;
+        delete [] _array;
     }
 
-    void operator = (const char * str) {
-        delete [] _string;
-        _length = strlen(str) + 1;
-        _string = new char[_length];
-        checkAllocation(_string);
-
-        strcpy(_string, str);
-        _string[_length - 1] = '\0';
+    void operator = (const char * arr) {
+        delete [] _array;
+        _size = strlen(arr) + 1;
+        _array = new char[_size];
+        checkAllocation(_array);
+        strcpy(_array, arr);
+        _array[_size - 1] = '\0';
     }
 
     void operator = (const String & str) {
-        delete [] _string;
-        _length = str._length;
-        _string = new char[_length];
-        checkAllocation(_string);
-
-        strcpy(_string, str._string);
-        _string[_length - 1] = '\0';
+        delete [] _array;
+        _size = str._size;
+        _array = new char[_size];
+        checkAllocation(_array);
+        strcpy(_array, str._array);
+        _array[_size - 1] = '\0';
     }
 
     void operator += (const String & str) {
         concatenate(str);
     }
 
-    void operator += (const char * str) {
-        concatenate(str);
+    void operator += (const char * arr) {
+        concatenate(arr);
     }
 
     bool operator == (const String & compared_str) {
-        if (strcmp(_string, compared_str._string) == 0) {
+        if (strcmp(_array, compared_str._array) == 0) {
             return true;
         }
         return false;
     }
 
     bool operator != (const String & compared_str) {
-        if (strcmp(_string, compared_str._string) != 0) {
+        if (strcmp(_array, compared_str._array) != 0) {
             return true;
         }
         return false;
     }
 
     bool operator < (const String & compared_str) { // Una palabra mayor que otra está más cerca del final en el diccionario.
-        if (strcmp(_string, compared_str._string) < 0) {
+        if (strcmp(_array, compared_str._array) < 0) {
             return true;
         }
         return false;
     }
 
-    bool operator < (int compared_length) {
-        if (_length - 1 < compared_length) {
+    bool operator < (int length) {
+        if (_size - 1 < length) {
             return true;
         }
         return false;
     }
 
-    bool operator <= (const String & compared_str) { // Una palabra mayor que otra está más cerca del final en el diccionario.
-        if (strcmp(_string, compared_str._string) <= 0) {
+    bool operator <= (const String & compared_str) {
+        if (strcmp(_array, compared_str._array) <= 0) {
             return true;
         }
         return false;
     }
 
-    bool operator <= (int compared_length) {
-        if (_length - 1 <= compared_length) {
+    bool operator <= (int length) {
+        if (_size - 1 <= length) {
             return true;
         }
         return false;
     }
 
     friend std::ostream & operator << (std::ostream & output, const String & string) {
-        output << string._string;
+        output << string._array;
         return output;
     }
 
@@ -112,85 +108,85 @@ class String {
     }
 
     void addChar(char character) {
-        _length ++;
+        _size ++;
 
-        char * new_string;
-        new_string = new char[_length];
-        checkAllocation(new_string);
+        char * aux_arr;
+        aux_arr = new char[_size];
+        checkAllocation(aux_arr);
 
-        strcpy(new_string, _string);
-        new_string[_length - 2] = character;
-        new_string[_length - 1] = '\0';
-        delete [] _string;
-        _string = new char[_length];
-        strcpy(_string, new_string);
-        delete [] new_string;
+        strcpy(aux_arr, _array);
+        aux_arr[_size - 2] = character;
+        aux_arr[_size - 1] = '\0';
+        delete [] _array;
+        _array = new char[_size];
+        strcpy(_array, aux_arr);
+        delete [] aux_arr;
     }
 
-    void concatenate(const char * str) {
-        _length += strlen(str);
+    void concatenate(const char * arr) {
+        _size += strlen(arr);
 
-        char * new_string;
-        new_string = new char[_length];
-        checkAllocation(new_string);
+        char * aux_arr;
+        aux_arr = new char[_size];
+        checkAllocation(aux_arr);
 
-        strcpy(new_string, _string);
+        strcpy(aux_arr, _array);
 
-        for (size_t i = 0; i < strlen(str); i ++) { // Definí la variable de incremento como size_t en vez de int para que no haya un warning al comparar con strlen() que no tiene signo
-            new_string[strlen(_string) + i] = str[i];
+        for (size_t i = 0; i < strlen(arr); i ++) { // Definí la variable de incremento como size_t en vez de int para que no haya un warning al comparar con strlen() que no tiene signo
+            aux_arr[strlen(_array) + i] = arr[i];
         }
 
-        new_string[_length - 1] = '\0';
-        delete [] _string;
-        _string = new char[_length];
-        strcpy(_string, new_string);
-        delete [] new_string;
+        aux_arr[_size - 1] = '\0';
+        delete [] _array;
+        _array = new char[_size];
+        strcpy(_array, aux_arr);
+        delete [] aux_arr;
     }
 
     void concatenate(const String & str) {
-        _length += str._length - 1;
+        _size += str._size - 1;
 
-        char * new_string;
-        new_string = new char[_length];
-        checkAllocation(new_string);
+        char * aux_arr;
+        aux_arr = new char[_size];
+        checkAllocation(aux_arr);
 
-        strcpy(new_string, _string);
+        strcpy(aux_arr, _array);
 
-        for (int i = 0; i < str._length - 1; i ++) { // Definí la variable de incremento como size_t en vez de int para que no haya un warning al comparar con strlen() que no tiene signo
-            new_string[strlen(_string) + i] = str._string[i];
+        for (int i = 0; i < str._size - 1; i ++) { // Definí la variable de incremento como size_t en vez de int para que no haya un warning al comparar con strlen() que no tiene signo
+            aux_arr[strlen(_array) + i] = str._array[i];
         }
 
-        new_string[_length - 1] = '\0';
-        delete [] _string;
-        _string = new char[_length];
-        strcpy(_string, new_string);
-        delete [] new_string;
+        aux_arr[_size - 1] = '\0';
+        delete [] _array;
+        _array = new char[_size];
+        strcpy(_array, aux_arr);
+        delete [] aux_arr;
     }
 
     void onCaps() {
-        for (int i = 0; i < _length; i ++) {
-            if ('a' <= _string[i] && _string[i] <= 'z') {
-                _string[i] = _string[i] + ('A' - 'a');
+        for (int i = 0; i < _size; i ++) {
+            if ('a' <= _array[i] && _array[i] <= 'z') {
+                _array[i] = _array[i] + ('A' - 'a');
             }
         }
     }
 
     void noCaps() {
-        for (int i = 0; i < _length; i ++) {
-            if ('A' <= _string[i] && _string[i] <= 'Z') {
-                _string[i] = _string[i] - ('A' - 'a');
+        for (int i = 0; i < _size; i ++) {
+            if ('A' <= _array[i] && _array[i] <= 'Z') {
+                _array[i] = _array[i] - ('A' - 'a');
             }
         }
     }
 
     void print() {
-        std::cout << _string << "\n";
+        std::cout << _array << "\n";
     }
 
     private:
 
-    char * _string;
-    int _length;
+    int _size;
+    char * _array;
 
     void checkAllocation(char * string) {
         if (string == NULL) {
@@ -204,7 +200,6 @@ int main() {
     // system("clear");
 
     // CONSTRUCTORES Y MÉTODOS
-
     /*
     String str_0(4);
     str_0.print();
@@ -221,7 +216,6 @@ int main() {
     */
 
     // SOBRECARGA DEL OPERADOR ==
-
     /*
     String str_2;
     str_2.print();
@@ -237,7 +231,6 @@ int main() {
     */
 
     // SOBRECARGA DEL OPERADOR <
-
     /*
     String str_4("Auto");
     str_4.print();
@@ -258,8 +251,7 @@ int main() {
     }
     */
 
-   // SOBRECARGA DEL OPERADOR =
-
+    // SOBRECARGA DEL OPERADOR =
     /*
     String str_6;
     str_6 = "...some text...";
@@ -271,7 +263,6 @@ int main() {
     */
 
     // SOBRECARGA DEL OPERADOR !=
-
     /*
     String str_8("Lorem Ipsum");
     str_8.print();
@@ -284,7 +275,6 @@ int main() {
     */
 
     // SOBRECARGA DEL OPERADOR +=
-
     /*
     String str_10("¡Hola");
     String str_11(" mundo!");
@@ -293,7 +283,6 @@ int main() {
     */
 
     // SOBRECARGA DEL OPERADOR <=
-
     /*
     String str_12("Taxi");
     str_12.print();
@@ -314,12 +303,13 @@ int main() {
     }
     */
 
-   // SOBRECARGA DE COUT (CON FUNCIONES AMIGAS):
-
-   String str_14;
-   std::cout << "Ingresar cadena:\n";
-   std::cin >> str_14;
-   std::cout << str_14 << "\n";
+    // SOBRECARGA DE CIN Y COUT (CON FUNCIONES AMIGAS):
+    /*
+    String str_14;
+    std::cout << "Ingresar cadena:\n";
+    std::cin >> str_14;
+    std::cout << str_14 << "\n";
+    */
 
    return 0;
 }
