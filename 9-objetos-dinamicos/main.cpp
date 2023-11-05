@@ -99,6 +99,18 @@ class String {
         return false;
     }
 
+    friend std::ostream & operator << (std::ostream & output, const String & string) {
+        output << string._string;
+        return output;
+    }
+
+    friend std::istream & operator >> (std::istream & input, String & string) {
+        char aux[50];
+        input >> aux;
+        string = aux;
+        return input;
+    }
+
     void addChar(char character) {
         _length ++;
 
@@ -301,6 +313,13 @@ int main() {
         std::cout << "Longitud > 4\n";
     }
     */
+
+   // SOBRECARGA DE COUT (CON FUNCIONES AMIGAS):
+
+   String str_14;
+   std::cout << "Ingresar cadena:\n";
+   std::cin >> str_14;
+   std::cout << str_14 << "\n";
 
    return 0;
 }
