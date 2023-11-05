@@ -311,7 +311,7 @@ int main() {
     std::cout << str_14 << "\n";
     */
 
-   return 0;
+    return 0;
 }
 
 /*
