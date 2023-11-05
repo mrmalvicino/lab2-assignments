@@ -188,18 +188,69 @@ class String {
     int _size;
     char * _array;
 
-    void checkAllocation(char * string) {
-        if (string == NULL) {
+    void checkAllocation(char * arr) {
+        if (arr == NULL) {
             std::cout << "Error de asignación de memoria.\n";
             exit(1);
         }
     }
 };
 
+class Queue { // FIFO (First In First Out)
+    public:
+
+    Queue(int size = 2) {
+        _size = size;
+        _array = new int[_size];
+        checkAllocation(_array);
+        _last = _first = 0;
+    }
+
+    ~Queue() {
+        delete [] _array;
+    }
+
+    bool add(int input) {
+        if (_last == _size) {
+            return false;
+        }
+        _array[_last] = input;
+        _last ++;
+        return true;
+    }
+
+    bool remove(int & output) {
+        if (_last == _first) {
+            return false;
+        }
+        output = _array[_first];
+        _first ++;
+        return true;
+    }
+
+    private:
+
+    int _size;
+    int _last;
+    int _first;
+    int * _array;
+
+    void checkAllocation(int * arr) {
+        if (arr == NULL) {
+            std::cout << "Error de asignación de memoria.\n";
+            exit(1);
+        }
+    }
+};
+
+class Stack { // LIFO (Last In First Out)
+
+};
+
 int main() {
     // system("clear");
 
-    // CONSTRUCTORES Y MÉTODOS
+    // CONSTRUCTORES Y MÉTODOS DE LA CLASE STRING
     /*
     String str_0(4);
     str_0.print();
@@ -310,6 +361,27 @@ int main() {
     std::cin >> str_14;
     std::cout << str_14 << "\n";
     */
+
+    // FIFO
+    /*
+    Queue queue(5);
+    int i = 1;
+    int aux;
+
+    while (queue.add(i)) {
+        i ++;
+    }
+
+    while (queue.remove(aux)) {
+        std::cout << aux << "\t"; 
+    }
+
+    std::cout << "\n";
+    */
+
+    // LIFO
+
+    
 
     return 0;
 }
